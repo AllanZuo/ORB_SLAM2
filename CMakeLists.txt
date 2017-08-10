@@ -28,7 +28,8 @@ endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
-link_directories(/usr/lib/x86_64-linux-gnu)
+find_library(AVCODEC_LIBRARY avcodec HINTS /usr/lib/x86_64-linux-gnu)
+target_link_libraries(test PUBLIC ${AVCODEC_LIBRARY})
 
 find_package(OpenCV 3.0 QUIET)
 if(NOT OpenCV_FOUND)
